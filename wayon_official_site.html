@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAYON (와이온) — Co-Ed Vocal Quartet</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cormorant Garamond, Plus Jakarta Sans & Noto Sans KR -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Sans+KR:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ivory: '#F7F5F0',
+                        sand: '#EFECE4',
+                        charcoal: '#1A1A1A',
+                        muted: '#5C5B57',
+                        glacier: '#4A7C82',
+                        terracotta: '#C45B3B',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', '"Noto Sans KR"', 'sans-serif'],
+                        kr: ['"Noto Sans KR"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F7F5F0;
+            color: #1A1A1A;
+            font-family: 'Plus Jakarta Sans', 'Noto Sans KR', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Animación orgánica de brisa andina en SVG */
+        @keyframes breezeFlow {
+            0% {
+                stroke-dashoffset: 1200;
+                opacity: 0.18;
+            }
+            50% {
+                opacity: 0.55;
+            }
+            100% {
+                stroke-dashoffset: 0;
+                opacity: 0.18;
+            }
+        }
+
+        .breeze-line {
+            stroke-dasharray: 1200;
+            animation: breezeFlow 18s ease-in-out infinite;
+        }
+
+        .breeze-line-alt {
+            stroke-dasharray: 1200;
+            animation: breezeFlow 24s ease-in-out infinite reverse;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-glacier/20 selection:text-charcoal">
+
+    <!-- Notificación flotante minimalista -->
+    <div id="toast-notification" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-charcoal text-ivory px-5 py-3 rounded-full shadow-lg flex items-center gap-3 text-xs tracking-wide">
+            <span class="w-2 h-2 rounded-full bg-terracotta"></span>
+            <span id="toast-message">Enlace copiado</span>
+        </div>
+    </div>
+
+    <!-- Navegación Editorial Fija -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-ivory/85 backdrop-blur-md border-b border-charcoal/5">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <!-- Identidad Tipográfica -->
+            <a href="#" class="flex items-baseline gap-2.5 group">
+                <span class="font-serif text-xl font-semibold tracking-[0.22em] text-charcoal">WAYON</span>
+                <span class="text-xs text-muted font-kr tracking-[0.2em] group-hover:text-glacier transition-colors">와이온</span>
+            </a>
+
+            <!-- Enlaces de Sección -->
+            <nav class="hidden md:flex items-center gap-9 text-[11px] uppercase tracking-[0.18em] text-muted">
+                <a href="#etimologia" class="hover:text-charcoal transition-colors" data-i18n="nav_etymology">Origen</a>
+                <a href="#arquitectura" class="hover:text-charcoal transition-colors" data-i18n="nav_formation">Formación 3+1</a>
+                <a href="#manifiesto" class="hover:text-charcoal transition-colors" data-i18n="nav_manifesto">Manifiesto</a>
+                <a href="#canales" class="hover:text-charcoal transition-colors" data-i18n="nav_channels">Canales</a>
+            </nav>
+
+            <!-- Selector Bilingüe ES / KO -->
+            <div class="flex items-center bg-sand p-1 rounded-full border border-charcoal/10">
+                <button id="btn-es" onclick="setLanguage('es')" class="px-3 py-1 rounded-full text-[11px] font-medium tracking-wider transition-all bg-charcoal text-ivory">
+                    ES
+                </button>
+                <button id="btn-ko" onclick="setLanguage('ko')" class="px-3 py-1 rounded-full text-[11px] font-medium tracking-wider transition-all text-muted hover:text-charcoal font-kr">
+                    한국어
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. PORTADA / HERO EDITORIAL -->
+    <section class="relative min-h-[92vh] flex flex-col justify-center pt-24 pb-16 px-6 overflow-hidden">
+        <!-- Trazos atmosféricos de viento (Wayra) -->
+        <div class="absolute inset-0 pointer-events-none flex items-center justify-center opacity-75">
+            <svg class="w-full h-full max-w-6xl" viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                <path class="breeze-line" d="M-80 310 C 220 210, 440 410, 740 280 C 960 185, 1110 305, 1280 255" stroke="#4A7C82" stroke-width="1.1" stroke-linecap="round"/>
+                <path class="breeze-line-alt" d="M-80 355 C 280 435, 540 205, 840 335 C 1030 415, 1160 275, 1280 325" stroke="#C45B3B" stroke-width="0.9" stroke-linecap="round"/>
+                <path class="breeze-line" d="M-40 270 C 310 340, 610 230, 910 300 C 1090 340, 1190 245, 1280 285" stroke="#1A1A1A" stroke-opacity="0.1" stroke-width="0.75"/>
+            </svg>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto w-full text-center space-y-10">
+            <!-- Etiqueta superior -->
+            <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-sand/90 border border-charcoal/10 text-[11px] tracking-[0.2em] uppercase text-muted">
+                <span class="w-1.5 h-1.5 rounded-full bg-terracotta"></span>
+                <span data-i18n="hero_badge">Cuarteto Vocal Mixto · 3+1</span>
+            </div>
+
+            <!-- Logotipo Principal -->
+            <div class="space-y-4">
+                <h1 class="font-serif text-6xl sm:text-8xl md:text-9xl font-normal tracking-[0.2em] text-charcoal pl-[0.2em] leading-none">
+                    WAYON
+                </h1>
+                <p class="text-xl sm:text-2xl font-kr font-light tracking-[0.45em] text-glacier pl-[0.45em]">
+                    와이온
+                </p>
+            </div>
+
+            <!-- Síntesis Poética -->
+            <p class="max-w-xl mx-auto text-base sm:text-lg text-muted font-light leading-relaxed" data-i18n="hero_subtitle">
+                Donde la brisa andina encuentra la calidez de Seúl.<br>
+                Tres armonías masculinas y una voz femenina en equilibrio sereno.
+            </p>
+
+            <!-- Accesos directos a futuros canales -->
+            <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#canales" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-charcoal text-ivory text-xs uppercase tracking-[0.18em] font-medium hover:bg-glacier transition-colors duration-300" data-i18n="hero_cta_primary">
+                    Canales Oficiales
+                </a>
+                <a href="#etimologia" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-transparent border border-charcoal/20 text-charcoal text-xs uppercase tracking-[0.18em] font-medium hover:border-charcoal transition-colors duration-300" data-i18n="hero_cta_secondary">
+                    Conocer el Origen
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. ETIMOLOGÍA: QUECHUA × COREANO -->
+    <section id="etimologia" class="py-24 px-6 border-t border-charcoal/10 bg-sand/40">
+        <div class="max-w-5xl mx-auto space-y-16">
+            <div class="max-w-2xl space-y-4">
+                <span class="text-[11px] uppercase tracking-[0.22em] text-terracotta font-medium" data-i18n="etym_label">01 · Etimología Dual</span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-normal text-charcoal leading-tight" data-i18n="etym_title">
+                    Dos lenguas ancestrales unidas en un mismo aliento.
+                </h2>
+            </div>
+
+            <!-- Ecuación Conceptual -->
+            <div class="grid md:grid-cols-11 gap-6 items-stretch">
+                <!-- Raíz Quechua -->
+                <div class="md:col-span-5 p-8 sm:p-10 rounded-3xl bg-ivory border border-charcoal/10 flex flex-col justify-between space-y-8">
+                    <div class="flex items-center justify-between text-xs uppercase tracking-[0.18em] text-muted">
+                        <span data-i18n="etym_q_tag">Raíz Quechua · Andes</span>
+                        <span class="font-serif italic text-base text-terracotta">Wayra</span>
+                    </div>
+                    <div class="space-y-3">
+                        <h3 class="font-serif text-4xl text-charcoal">WAYRA</h3>
+                        <p class="text-sm text-muted font-light leading-relaxed" data-i18n="etym_q_desc">
+                            Significa <strong>viento</strong> o <strong>brisa en movimiento</strong>. En la cosmovisión andina representa el flujo invisible que conecta las montañas, transporta la voz y renueva el espíritu sin imposiciones.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-charcoal/5 text-[11px] font-mono text-terracotta">
+                        [ WAY-RA ] · AIRE & MOVIMIENTO
+                    </div>
+                </div>
+
+                <!-- Símbolo de Unión -->
+                <div class="md:col-span-1 flex items-center justify-center py-2">
+                    <span class="font-serif text-3xl text-muted">+</span>
+                </div>
+
+                <!-- Raíz Coreana -->
+                <div class="md:col-span-5 p-8 sm:p-10 rounded-3xl bg-ivory border border-charcoal/10 flex flex-col justify-between space-y-8">
+                    <div class="flex items-center justify-between text-xs uppercase tracking-[0.18em] text-muted">
+                        <span data-i18n="etym_k_tag">Raíz Coreana · Seúl</span>
+                        <span class="font-kr text-sm text-glacier">온</span>
+                    </div>
+                    <div class="space-y-3">
+                        <h3 class="font-serif text-4xl text-charcoal">ON <span class="font-kr text-2xl font-light text-glacier">(온)</span></h3>
+                        <p class="text-sm text-muted font-light leading-relaxed" data-i18n="etym_k_desc">
+                            En coreano puro encierra dos matices esenciales: <strong>calidez</strong> (溫) y <strong>totalidad / plenitud</strong> (전체). Simboliza el instante exacto en que un conjunto alcanza su forma completa y acogedora.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-charcoal/5 text-[11px] font-mono text-glacier">
+                        [ 와이온 ] · CALIDEZ & PLENITUD
+                    </div>
+                </div>
+            </div>
+
+            <!-- Síntesis Final -->
+            <div class="p-8 rounded-3xl bg-ivory border border-charcoal/10 text-center max-w-3xl mx-auto space-y-2">
+                <p class="font-serif text-2xl sm:text-3xl text-charcoal" data-i18n="etym_result_title">
+                    WAYON (와이온) = «Brisa cálida que completa el sonido»
+                </p>
+                <p class="text-xs sm:text-sm text-muted font-light" data-i18n="etym_result_sub">
+                    Un puente natural entre la sensibilidad poética latinoamericana y el minimalismo vocal contemporáneo de Corea.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. FORMACIÓN VOCAL 3 + 1 -->
+    <section id="arquitectura" class="py-24 px-6 border-t border-charcoal/10">
+        <div class="max-w-5xl mx-auto space-y-14">
+            <div class="grid md:grid-cols-12 gap-8 items-end">
+                <div class="md:col-span-7 space-y-3">
+                    <span class="text-[11px] uppercase tracking-[0.22em] text-glacier font-medium" data-i18n="form_label">02 · Arquitectura Vocal</span>
+                    <h2 class="font-serif text-4xl sm:text-5xl font-normal text-charcoal leading-tight" data-i18n="form_title">
+                        El equilibrio 3+1.
+                    </h2>
+                </div>
+                <p class="md:col-span-5 text-sm text-muted font-light leading-relaxed" data-i18n="form_desc">
+                    Concebido originalmente como un trío de armonías masculinas, el proyecto encontró su identidad definitiva al integrar una cuarta voz femenina: el elemento «On (온)» que transforma el contraste en unidad.
+                </p>
+            </div>
+
+            <!-- Tarjetas Interactivas de los 4 Pilares Vocales -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <!-- Voz 1 -->
+                <div onclick="selectPillar(0)" id="pillar-0" class="pillar-card cursor-pointer p-7 rounded-2xl bg-sand/50 border border-charcoal/10 hover:border-glacier transition-all duration-300 space-y-5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-mono text-muted">01 · MASCULINO</span>
+                        <span class="w-2 h-2 rounded-full bg-glacier/50"></span>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-2xl text-charcoal" data-i18n="p1_title">Cimiento</h3>
+                        <p class="text-xs font-kr text-glacier mt-1">깊은 울림 · Registro Grave</p>
+                    </div>
+                    <p class="text-xs text-muted font-light leading-relaxed" data-i18n="p1_desc">
+                        Timbre profundo que sostiene el pulso rítmico y brinda calidez orgánica a cada ensamble.
+                    </p>
+                </div>
+
+                <!-- Voz 2 -->
+                <div onclick="selectPillar(1)" id="pillar-1" class="pillar-card cursor-pointer p-7 rounded-2xl bg-sand/50 border border-charcoal/10 hover:border-glacier transition-all duration-300 space-y-5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-mono text-muted">02 · MASCULINO</span>
+                        <span class="w-2 h-2 rounded-full bg-glacier/50"></span>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-2xl text-charcoal" data-i18n="p2_title">Cadencia</h3>
+                        <p class="text-xs font-kr text-glacier mt-1">절제된 흐름 · Registro Medio</p>
+                    </div>
+                    <p class="text-xs text-muted font-light leading-relaxed" data-i18n="p2_desc">
+                        Voz narrativa que articula la transición entre el silencio, el fraseo íntimo y la expansión melódica.
+                    </p>
+                </div>
+
+                <!-- Voz 3 -->
+                <div onclick="selectPillar(2)" id="pillar-2" class="pillar-card cursor-pointer p-7 rounded-2xl bg-sand/50 border border-charcoal/10 hover:border-glacier transition-all duration-300 space-y-5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-mono text-muted">03 · MASCULINO</span>
+                        <span class="w-2 h-2 rounded-full bg-glacier/50"></span>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-2xl text-charcoal" data-i18n="p3_title">Brisa</h3>
+                        <p class="text-xs font-kr text-glacier mt-1">화음의 결 · Tenor Armónico</p>
+                    </div>
+                    <p class="text-xs text-muted font-light leading-relaxed" data-i18n="p3_desc">
+                        Teje las capas armónicas superiores, aportando amplitud atmosférica y suavidad vocal.
+                    </p>
+                </div>
+
+                <!-- Voz 4 (+1 Femenina) -->
+                <div onclick="selectPillar(3)" id="pillar-3" class="pillar-card cursor-pointer p-7 rounded-2xl bg-ivory border border-terracotta/40 ring-1 ring-terracotta/20 transition-all duration-300 space-y-5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[11px] font-mono text-terracotta font-medium">+1 · FEMENINO</span>
+                        <span class="w-2 h-2 rounded-full bg-terracotta"></span>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-2xl text-charcoal" data-i18n="p4_title">Plenitud (On)</h3>
+                        <p class="text-xs font-kr text-terracotta mt-1">온전한 빛 · Centro Melódico</p>
+                    </div>
+                    <p class="text-xs text-muted font-light leading-relaxed" data-i18n="p4_desc">
+                        La voz femenina que equilibra el trío masculino, aportando claridad luminosa y completando el círculo sonoro.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Nota interactiva inferior -->
+            <div class="px-5 py-3.5 rounded-2xl bg-sand/60 border border-charcoal/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+                <span id="pillar-feedback" class="text-muted" data-i18n="pillar_default">
+                    Selecciona cada pilar vocal para conocer cómo dialogan las cuatro voces de WAYON.
+                </span>
+                <span class="font-mono text-[11px] text-charcoal/70">3M + 1F = WAYON</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. MANIFIESTO ARTÍSTICO BILINGÜE -->
+    <section id="manifiesto" class="py-24 px-6 border-t border-charcoal/10 bg-sand/40">
+        <div class="max-w-4xl mx-auto space-y-12">
+            <div class="text-center space-y-3">
+                <span class="text-[11px] uppercase tracking-[0.22em] text-terracotta font-medium" data-i18n="manif_label">03 · Manifiesto Artístico</span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-normal text-charcoal" data-i18n="manif_title">
+                    Menos ruido, más verdad.
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 sm:gap-12 p-8 sm:p-12 rounded-3xl bg-ivory border border-charcoal/10">
+                <!-- Columna Español -->
+                <div class="space-y-4">
+                    <span class="text-[10px] uppercase tracking-[0.2em] text-muted block">Español</span>
+                    <p class="font-serif text-xl sm:text-2xl text-charcoal leading-relaxed">
+                        «Creemos en la fuerza de lo sereno. No buscamos llenar cada espacio con estridencia, sino dejar que el aire entre las notas hable por sí mismo.»
+                    </p>
+                    <p class="text-sm text-muted font-light leading-relaxed">
+                        WAYON es un espacio de encuentro cultural: respeta la calma, valora la lealtad silenciosa y convierte la unión de cuatro timbres distintos en una sola brisa cálida.
+                    </p>
+                </div>
+
+                <!-- Columna Coreano -->
+                <div class="space-y-4 md:border-l md:border-charcoal/10 md:pl-10">
+                    <span class="text-[10px] uppercase tracking-[0.2em] text-glacier font-kr block">한국어</span>
+                    <p class="font-kr text-base sm:text-lg text-charcoal font-normal leading-relaxed">
+                        “우리는 고요함이 지닌 힘을 믿습니다. 화려한 소음으로 빈틈을 채우기보다, 음과 음 사이에 흐르는 바람이 스스로 말하게 합니다.”
+                    </p>
+                    <p class="font-kr text-xs sm:text-sm text-muted font-light leading-relaxed">
+                        WAYON(와이온)은 서로 다른 문화와 네 개의 목소리가 만나 하나의 따뜻한 온기를 이루는 예술적 여정입니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CANALES OFICIALES (SPOTIFY & YOUTUBE READY) -->
+    <section id="canales" class="py-24 px-6 border-t border-charcoal/10">
+        <div class="max-w-4xl mx-auto space-y-12">
+            <div class="text-center max-w-xl mx-auto space-y-3">
+                <span class="text-[11px] uppercase tracking-[0.22em] text-glacier font-medium" data-i18n="chan_label">04 · Conexión Oficial</span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-normal text-charcoal" data-i18n="chan_title">
+                    Nuestros Canales
+                </h2>
+                <p class="text-sm text-muted font-light" data-i18n="chan_desc">
+                    Sigue el recorrido visual y sonoro de WAYON (와이온) en nuestras plataformas oficiales.
+                </p>
+            </div>
+
+            <!-- Tarjetas Destacadas para Spotify y YouTube -->
+            <div class="grid sm:grid-cols-2 gap-6">
+                <!-- Spotify Official Card -->
+                <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer" onclick="handleChannelClick(event, 'Spotify')" class="group p-8 rounded-3xl bg-ivory border border-charcoal/15 hover:border-glacier transition-all duration-300 flex flex-col justify-between space-y-8 shadow-sm hover:shadow-md">
+                    <div class="flex items-center justify-between">
+                        <div class="w-12 h-12 rounded-2xl bg-sand flex items-center justify-center text-charcoal group-hover:bg-glacier group-hover:text-ivory transition-colors">
+                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                        </div>
+                        <span class="text-[11px] uppercase tracking-[0.18em] text-muted group-hover:text-glacier transition-colors flex items-center gap-1.5">
+                            <span data-i18n="chan_status">Perfil Oficial</span>
+                            <span>↗</span>
+                        </span>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h3 class="font-serif text-3xl text-charcoal">Spotify</h3>
+                        <p class="text-xs text-muted font-light leading-relaxed" data-i18n="spotify_desc">
+                            Escucha nuestros próximos lanzamientos oficiales y guarda el perfil de artista de WAYON (와이온).
+                        </p>
+                    </div>
+
+                    <div class="pt-4 border-t border-charcoal/5 flex items-center justify-between text-xs font-mono text-charcoal/80">
+                        <span>@WAYON</span>
+                        <span class="text-glacier" data-i18n="chan_action">Conectar →</span>
+                    </div>
+                </a>
+
+                <!-- YouTube Official Card -->
+                <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" onclick="handleChannelClick(event, 'YouTube')" class="group p-8 rounded-3xl bg-ivory border border-charcoal/15 hover:border-terracotta transition-all duration-300 flex flex-col justify-between space-y-8 shadow-sm hover:shadow-md">
+                    <div class="flex items-center justify-between">
+                        <div class="w-12 h-12 rounded-2xl bg-sand flex items-center justify-center text-charcoal group-hover:bg-terracotta group-hover:text-ivory transition-colors">
+                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </div>
+                        <span class="text-[11px] uppercase tracking-[0.18em] text-muted group-hover:text-terracotta transition-colors flex items-center gap-1.5">
+                            <span data-i18n="chan_yt_status">Canal Oficial</span>
+                            <span>↗</span>
+                        </span>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h3 class="font-serif text-3xl text-charcoal">YouTube</h3>
+                        <p class="text-xs text-muted font-light leading-relaxed" data-i18n="youtube_desc">
+                            Suscríbete para sesiones visuales, adelantos conceptuales y material audiovisual oficial del cuarteto.
+                        </p>
+                    </div>
+
+                    <div class="pt-4 border-t border-charcoal/5 flex items-center justify-between text-xs font-mono text-charcoal/80">
+                        <span>@WAYON_Official</span>
+                        <span class="text-terracotta" data-i18n="chan_action">Conectar →</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. PIE DE PÁGINA MINIMALISTA -->
+    <footer class="py-12 px-6 border-t border-charcoal/10 bg-sand/30">
+        <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-muted">
+            <div class="flex items-center gap-3">
+                <span class="font-serif text-base font-semibold tracking-[0.2em] text-charcoal">WAYON</span>
+                <span class="font-kr text-glacier">와이온</span>
+                <span>·</span>
+                <span data-i18n="footer_sub">Wayra (Viento) + On (온 · Calidez)</span>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <button onclick="copyContactEmail()" class="hover:text-charcoal transition-colors" data-i18n="footer_contact">
+                    Prensa & Contacto
+                </button>
+                <span>© 2026 WAYON</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lógica Bilingüe e Interactividad Minimalista -->
+    <script>
+        const translations = {
+            es: {
+                nav_etymology: "Origen",
+                nav_formation: "Formación 3+1",
+                nav_manifesto: "Manifiesto",
+                nav_channels: "Canales",
+                hero_badge: "Cuarteto Vocal Mixto · 3+1",
+                hero_subtitle: "Donde la brisa andina encuentra la calidez de Seúl.<br>Tres armonías masculinas y una voz femenina en equilibrio sereno.",
+                hero_cta_primary: "Canales Oficiales",
+                hero_cta_secondary: "Conocer el Origen",
+                etym_label: "01 · Etimología Dual",
+                etym_title: "Dos lenguas ancestrales unidas en un mismo aliento.",
+                etym_q_tag: "Raíz Quechua · Andes",
+                etym_q_desc: "Significa <strong>viento</strong> o <strong>brisa en movimiento</strong>. En la cosmovisión andina representa el flujo invisible que conecta las montañas, transporta la voz y renueva el espíritu sin imposiciones.",
+                etym_k_tag: "Raíz Coreana · Seúl",
+                etym_k_desc: "En coreano puro encierra dos matices esenciales: <strong>calidez</strong> (溫) y <strong>totalidad / plenitud</strong> (전체). Simboliza el instante exacto en que un conjunto alcanza su forma completa y acogedora.",
+                etym_result_title: "WAYON (와이온) = «Brisa cálida que completa el sonido»",
+                etym_result_sub: "Un puente natural entre la sensibilidad poética latinoamericana y el minimalismo vocal contemporáneo de Corea.",
+                form_label: "02 · Arquitectura Vocal",
+                form_title: "El equilibrio 3+1.",
+                form_desc: "Concebido originalmente como un trío de armonías masculinas, el proyecto encontró su identidad definitiva al integrar una cuarta voz femenina: el elemento «On (온)» que transforma el contraste en unidad.",
+                p1_title: "Cimiento",
+                p1_desc: "Timbre profundo que sostiene el pulso rítmico y brinda calidez orgánica a cada ensamble.",
+                p2_title: "Cadencia",
+                p2_desc: "Voz narrativa que articula la transición entre el silencio, el fraseo íntimo y la expansión melódica.",
+                p3_title: "Brisa",
+                p3_desc: "Teje las capas armónicas superiores, aportando amplitud atmosférica y suavidad vocal.",
+                p4_title: "Plenitud (On)",
+                p4_desc: "La voz femenina que equilibra el trío masculino, aportando claridad luminosa y completando el círculo sonoro.",
+                pillar_default: "Selecciona cada pilar vocal para conocer cómo dialogan las cuatro voces de WAYON.",
+                manif_label: "03 · Manifiesto Artístico",
+                manif_title: "Menos ruido, más verdad.",
+                chan_label: "04 · Conexión Oficial",
+                chan_title: "Nuestros Canales",
+                chan_desc: "Sigue el recorrido visual y sonoro de WAYON (와이온) en nuestras plataformas oficiales.",
+                chan_status: "Perfil Oficial",
+                chan_yt_status: "Canal Oficial",
+                spotify_desc: "Escucha nuestros próximos lanzamientos oficiales y guarda el perfil de artista de WAYON (와이온).",
+                youtube_desc: "Suscríbete para sesiones visuales, adelantos conceptuales y material audiovisual oficial del cuarteto.",
+                chan_action: "Conectar →",
+                footer_sub: "Wayra (Viento) + On (온 · Calidez)",
+                footer_contact: "Prensa & Contacto"
+            },
+            ko: {
+                nav_etymology: "어원",
+                nav_formation: "3+1 구성",
+                nav_manifesto: "매니페스토",
+                nav_channels: "공식 채널",
+                hero_badge: "혼성 4인조 보컬 그룹 · 3+1",
+                hero_subtitle: "안데스의 바람이 서울의 온기를 만나는 곳.<br>세 남성의 하모니와 한 여성의 목소리가 이루는 고요한 균형.",
+                hero_cta_primary: "공식 채널 바로가기",
+                hero_cta_secondary: "그룹의 기원 보기",
+                etym_label: "01 · 이중 어원",
+                etym_title: "하나의 숨결로 이어진 두 언어의 울림.",
+                etym_q_tag: "케추아어 어원 · 안데스",
+                etym_q_desc: "<strong>바람</strong> 또는 <strong>흐르는 산들바람</strong>을 뜻합니다. 안데스의 세계관에서 바람은 산과 산을 잇고, 목소리를 전하며, 자연스럽게 마음을 새롭게 하는 보이지 않는 흐름을 상징합니다.",
+                etym_k_tag: "한국어 어원 · 서울",
+                etym_k_desc: "순우리말과 한자어에서 <strong>따뜻함(溫)</strong>과 <strong>전부·완전함(온)</strong>이라는 두 가지 깊은 의미를 품고 있습니다. 비로소 하나가 되어 완전해지는 순간을 상징합니다.",
+                etym_result_title: "WAYON (와이온) = «소리를 완성하는 따뜻한 바람»",
+                etym_result_sub: "라틴 아메리카의 서정적 감성과 한국의 미니멀한 현대 보컬 미학을 잇는 자연스러운 가교입니다.",
+                form_label: "02 · 보컬 아키텍처",
+                form_title: "3+1의 균형.",
+                form_desc: "본래 세 남성 보컬의 하모니 트리오로 구상되었으나, 네 번째 여성 보컬이 합류하면서 비로소 ‘온(ON)’의 의미를 완성하며 독보적인 정체성을 갖추게 되었습니다.",
+                p1_title: "기반 (Cimiento)",
+                p1_desc: "리듬의 중심을 단단히 지탱하며 앙상블 전체에 깊은 울림과 온기를 더하는 저음 보컬.",
+                p2_title: "흐름 (Cadencia)",
+                p2_desc: "고요함과 섬세한 프레이징, 그리고 멜로디의 확장을 자연스럽게 연결하는 서사적 보컬.",
+                p3_title: "바람 (Brisa)",
+                p3_desc: "상층부 화음 레이어를 정교하게 엮어내며 공간감과 부드러운 공기감을 채우는 보컬.",
+                p4_title: "완성 (On · 온)",
+                p4_desc: "세 남성의 화음과 균형을 이루며 맑은 선율로 소리의 원을 완성하는 여성 보컬.",
+                pillar_default: "각 보컬 파트를 클릭하여 WAYON의 네 목소리가 어떻게 어우러지는지 확인해 보세요.",
+                manif_label: "03 · 아티스트 매니페스토",
+                manif_title: "덜어낸 소음, 더 깊은 진심.",
+                chan_label: "04 · 공식 연결",
+                chan_title: "공식 채널",
+                chan_desc: "공식 플랫폼에서 WAYON(와이온)의 음악적·시각적 여정을 함께해 주세요.",
+                chan_status: "공식 아티스트",
+                chan_yt_status: "공식 유튜브",
+                spotify_desc: "앞으로 공개될 WAYON(와이온)의 공식 발매작을 가장 먼저 만나보고 아티스트 프로필을 팔로우하세요.",
+                youtube_desc: "비주얼 세션, 콘셉트 티저 및 4인조의 공식 영상 아카이브를 구독해 주세요.",
+                chan_action: "이동하기 →",
+                footer_sub: "Wayra (바람) + On (온 · 따뜻함)",
+                footer_contact: "문의 및 프레스"
+            }
+        };
+
+        let currentLang = 'es';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+
+            const btnEs = document.getElementById('btn-es');
+            const btnKo = document.getElementById('btn-ko');
+            if (lang === 'es') {
+                btnEs.className = "px-3 py-1 rounded-full text-[11px] font-medium tracking-wider transition-all bg-charcoal text-ivory";
+                btnKo.className = "px-3 py-1 rounded-full text-[11px] font-medium tracking-wider transition-all text-muted hover:text-charcoal font-kr";
+            } else {
+                btnKo.className = "px-3 py-1 rounded-full text-[11px] font-medium tracking-wider transition-all bg-charcoal text-ivory font-kr";
+                btnEs.className = "px-3 py-1 rounded-full text-[11px] font-medium tracking-wider transition-all text-muted hover:text-charcoal";
+            }
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+        }
+
+        // Interacción con los 4 pilares vocales
+        const pillarNotes = {
+            es: [
+                "01 · Cimiento Masculino: Ancla la armonía grave y da cuerpo cálido al cuarteto.",
+                "02 · Cadencia Masculina: Conduce la expresividad media con naturalidad y cercanía.",
+                "03 · Brisa Masculina: Aporta aire y textura armónica en los registros altos.",
+                "+1 · Plenitud Femenina (On): El contraste luminoso que completa la identidad de WAYON."
+            ],
+            ko: [
+                "01 · 남성 저음: 4인조 하모니의 중심을 잡고 따뜻한 깊이를 부여합니다.",
+                "02 · 남성 중음: 자연스럽고 섬세한 감정선으로 곡의 흐름을 이끕니다.",
+                "03 · 남성 고음: 상층부 화음에 부드러운 공기감과 여백을 더합니다.",
+                "+1 · 여성 보컬 (온): 맑은 대비를 통해 WAYON의 정체성을 완성합니다."
+            ]
+        };
+
+        function selectPillar(index) {
+            document.querySelectorAll('.pillar-card').forEach((card, i) => {
+                if (i === index) {
+                    card.classList.add('ring-2', i === 3 ? 'ring-terracotta' : 'ring-glacier', 'bg-ivory');
+                } else {
+                    card.classList.remove('ring-2', 'ring-terracotta', 'ring-glacier');
+                }
+            });
+            document.getElementById('pillar-feedback').textContent = pillarNotes[currentLang][index];
+        }
+
+        // Notificación tipo toast para enlaces de canales futuros y correo
+        function showToast(msg) {
+            const toast = document.getElementById('toast-notification');
+            document.getElementById('toast-message').textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        function handleChannelClick(event, platform) {
+            // Permite abrir la plataforma y avisa que la URL directa del perfil se actualizará tras el lanzamiento
+            const msg = currentLang === 'es'
+                ? `Abriendo ${platform} · Listo para vincular el enlace oficial de WAYON`
+                : `${platform} 열기 · WAYON 공식 채널 링크 연결 준비 완료`;
+            showToast(msg);
+        }
+
+        function copyContactEmail() {
+            const tempInput = document.createElement('input');
+            tempInput.value = 'contact@wayon-official.com';
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast(currentLang === 'es' ? 'Correo copiado: contact@wayon-official.com' : '이메일 복사됨: contact@wayon-official.com');
+        }
+    </script>
+</body>
+</html>
